@@ -1,0 +1,13 @@
+.Message {
+   border: 1px solid black;
+   border-color: purple;
+   background-color: rgba(218, 117, 218);
+}
+
+.Message * {
+    background-color: black;
+}
+
+.Message p {
+    color: white;
+}
