@@ -10,7 +10,7 @@ const MinimizeIcon = ({ color = '#9A79FC', size = "24" }) => (
     strokeLinecap="round"
     strokeLinejoin="round"
   >
-    <line x1="4" y1="12" x2="20" y2="12" />
+    <line style={{filter: "drop-shadow(0px 0px 1px #9474df)"}} x1="4" y1="12" x2="20" y2="12" />
   </svg>
 );
 

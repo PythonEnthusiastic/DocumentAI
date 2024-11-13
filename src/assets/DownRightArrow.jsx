@@ -1,5 +1,6 @@
-const DownRightArrow = ({ color = '#9A79FC', size = "24" }) => (
+const DownRightArrow = ({ color = '#9474df', size = "24", style }) => (
   <svg
+    style={style}
     xmlns="http://www.w3.org/2000/svg"
     width={size}
     height={size}
@@ -10,7 +11,9 @@ const DownRightArrow = ({ color = '#9A79FC', size = "24" }) => (
     strokeLinecap="round"
     strokeLinejoin="round"
   >
-    <path d="M7 7 L17 7 L17 17" />
-    <path d="M7 17 L17 7" />
+    <path style={{filter: "drop-shadow(0px 0px 1px #9474df)"}} d="M7 7 L17 7 L17 17" />
+    <path style={{filter: "drop-shadow(0px 0px 1px #9474df)"}} d="M7 17 L17 7" />
   </svg>
 );
+
+export default DownRightArrow

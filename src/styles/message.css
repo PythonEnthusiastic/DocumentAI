@@ -1,4 +1,4 @@
-.Message {
+/* .Message {
    border: 1px solid black;
    border-color: purple;
    background-color: rgba(218, 117, 218);
@@ -10,4 +10,35 @@
 
 .Message p {
     color: white;
+} */
+
+/* @keyframes glowEffect {
+    0% {
+      text-shadow: 0 0 1.2px #9474df;
+    }
+    50% {
+      text-shadow: 0 0 5px #9474df, 0 0 2px #9474df;
+    }
+    100% {
+      text-shadow: 0 0 1.2px #9474df;
+    }
+} */
+
+@keyframes boxShadowAnimation {
+    0% {
+      box-shadow: 0 0 5px #7e75c1, 0 0 20px #fff, 0 0 5px #7e75c1, 0 0 10px #7e75c1, 0 0 92px #7e75c1;
+    }
+    50% {
+      box-shadow: 0 0 5px #7e75c1, 0 0 40px #fff, 0 0 5px #7e75c1, 0 0 20px #7e75c1, 0 0 184px #7e75c1;
+    }
+    100% {
+      box-shadow: 0 0 5px #7e75c1, 0 0 20px #fff, 0 0 5px #7e75c1, 0 0 30px #7e75c1, 0 0 92px #7e75c1;
+    }
+}
+
+* {
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
 }
