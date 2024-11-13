@@ -1,18 +1,20 @@
 import ExitIcon from "../assets/ExitIcon.jsx";
 import MinimizeIcon from "../assets/MinimizeIcon.jsx";
 import DownRightArrow from "../assets/DownRightArrow.jsx";
-import '../styles/fonts.css';
 import "../styles/message.css"
 
 // TODO: ChatContext
 // Will hold messages within it's context
 // Will spawn new messages as they are submitted
 
-const Message = (props) => {
+const Message = ({ author="DocumentAI", message="" }) => {
     const messageStyle = {
         backgroundColor: "#7e75c1",
-        // fontFamily: 'GG Sans, sans-serif',
-        // boxShadow: "0 0 10px #7e75c1",
+        width: "clamp(50%, 65vw, 100%)",
+        marginLeft: "auto",
+        marginRight: "auto",
+        marginTop: "50px",
+        boxShadow: "0 0 2px #7e75c1",
         // animation: "boxShadowAnimation 3s ease-in-out infinite",
         maxHeight: "400px",
         paddingTop: "1px",
@@ -20,8 +22,8 @@ const Message = (props) => {
 
     return (
         <div style={messageStyle} className="Message">
-            <Header />
-            <Content />
+            <Header author={author} />
+            <Content message={message} />
         </div>
     )
 }
@@ -31,47 +33,54 @@ const Message = (props) => {
 // Moderately Darker: #6d63a6
 // #9474df
 
-const Header = () => {
+const Header = ({ author }) => {
     const headerStyle = {
-        backgroundColor: '#18171f',
+        backgroundColor: '#18171f', // #1c1f2b
         color: '#715dc2',
         marginBottom: ".5px",
         marginRight: "1px",
         marginLeft: "1px",
         display: 'flex',
         justifyContent: 'space-between',
+        flexWrap: "wrap",
         radius: '15px',
-        alignItems: 'center'
+        alignItems: 'center',
     };
 
     const leftStyle = {
-        color: "#9A79FC",
         textShadow: "0 0 1.8px #9474df, 0 0 0.5px #9474df",
-        letterSpacing: "clamp(.05rem, .08rem, .1rem)",
-        fontSize: "min(max(5vw, 2rem), 6.5vw)",
         display: 'flex',
         alignItems: 'center',
-        animation: "glowEffect 3s ease-in-out infinite",
     };
+
+    const authorStyle = {
+        color: "#9A79FC",
+        fontSize: "1.7rem",
+        letterSpacing: "clamp(.08rem, .1rem, .12rem)",
+        textShadow: "0 0 1.8px #9474df, 0 0 0.5px #9474df",
+        margin: "10px auto",
+        wordWrap: "break-word",
+    }
 
     const arrowStyle = {
         color: "#7e75c1",
         width: "100%",
-        height: "auto"
+        marginRight: "10px",
+        marginLeft: "10px",
     };
 
     const iconsStyle = {
         display: 'flex',
         alignItems: 'center',
         textShadow: "0 0 1.2px #9474df",
-        animation: "glowEffect 3s ease-in-out infinite"
+        marginRight: "10px"
     };
 
     return (
         <div style={headerStyle} className="Message-header">
             <div style={leftStyle}>
                 <DownRightArrow style={arrowStyle} />
-                DocumentAI
+                <p style={authorStyle}>{author}</p>
             </div>
             <div style={iconsStyle} className="Message-header-icons">
                 <MinimizeIcon color="#7e75c1"/>
@@ -81,36 +90,37 @@ const Header = () => {
     )
 }
 
-const Content = () => {
+const Content = ({ message }) => {
     const outerMessageStyle = {
-        paddingTop: ".5px",
+        paddingTop: "0.5px",
         paddingLeft:"1px",
         paddingRight: "1px",
         paddingBottom: "1px",
-        minHeight: "100%",
     }
 
     const innerMessageStyle = {
         display: "inline-block",
         backgroundColor: "#18171f",
-        height: "100%",
+        minHeight: "100%",
         width: "100%",
         borderBottomRightRadius: "15px",
     }
 
     const contentStyle = {
-        fontSize: "min(max(5vw, 2rem), 6vw)",
+        fontSize: "1.2rem",
         color: "#F0EAD6",
         wordWrap: "break-word",
         margin: "4px",
-        marginLeft: "clamp(5px, 6%, 25px)",
-        marginRight: "clamp(5px, 6%, 20px)",
+        marginTop: "clamp(5px, 10%, 15px)",
+        marginBottom: "clamp(5px, 10%, 15px)",
+        marginLeft: "clamp(5px, 10%, 25px)",
+        marginRight: "clamp(5px, 10%, 20px)",
     }
     
     return (
         <div style={outerMessageStyle} className="outer-Message-content">
             <div style={innerMessageStyle} className="inner-Message-content">
-                <p style={contentStyle}>Hello it is nice to meet you!</p>
+                <p style={contentStyle}>{message}</p>
             </div>
         </div>
     )
