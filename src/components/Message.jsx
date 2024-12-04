@@ -3,10 +3,6 @@ import MinimizeIcon from "../assets/MinimizeIcon.jsx";
 import DownRightArrow from "../assets/DownRightArrow.jsx";
 import "../styles/message.css"
 
-// TODO: ChatContext
-// Will hold messages within it's context
-// Will spawn new messages as they are submitted
-
 const Message = ({ author="DocumentAI", message="" }) => {
     const messageStyle = {
         backgroundColor: "#7e75c1",
@@ -16,7 +12,6 @@ const Message = ({ author="DocumentAI", message="" }) => {
         marginTop: "50px",
         boxShadow: "0 0 2px #7e75c1",
         // animation: "boxShadowAnimation 3s ease-in-out infinite",
-        maxHeight: "400px",
         paddingTop: "1px",
     }
 

@@ -1,6 +1,7 @@
 import { useState } from "react"
-import Message from "./Message.jsx";
 import "../styles/questionBox.css"
+
+import QueryModel from "../utils/queryModel.js";
 
 const QuestionBox = ({ addMessage }) => {
     const [question, setQuestion] = useState("");
@@ -10,9 +11,16 @@ const QuestionBox = ({ addMessage }) => {
         setQuestion(`${e.target.value}`);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        addMessage(<Message author="User" message={question} />)
+
+        let time = new Date();
+        let questionTime = time.getTime();
+        addMessage(questionTime, question)
+
+        let responseTime = time.getTime() + 1;
+        addMessage(responseTime, "")
+        QueryModel(responseTime, question, addMessage)
     }
 
     const handleKey = (e) => {

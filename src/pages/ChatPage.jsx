@@ -2,9 +2,9 @@ import useMessages from "../hooks/useMessages";
 
 import { v1 as uuidv1 } from 'uuid';
 
-import Message from "../components/Message";
 import Chat from "../components/Chat";
 import QuestionBox from "../components/QuestionBox";
+import Message from "../components/Message";
 
 const ChatPage = () => {
     const [messages, setMessages] = useMessages();
@@ -21,9 +21,9 @@ const ChatPage = () => {
     return (
         <div style={containerStyle}>
             <Chat>
-                {messages.map(message => (
+                {Object.values(messages).map(message => (
                     <div key={uuidv1()}>
-                        {message}
+                        <Message message={message} />
                     </div>
                 ))}
             </Chat>
