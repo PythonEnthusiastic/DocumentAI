@@ -1,10 +1,25 @@
 import { useState } from "react"
 import "../styles/questionBox.css"
 
+import { useContext } from "react";
+import { DragAndDropContext } from "./DragAndDropContext";
+
+import Picture from "./Picture";
+
 import QueryModel from "../utils/queryModel.js";
 
 const QuestionBox = ({ addMessage }) => {
     const [question, setQuestion] = useState("");
+    const { file } = useContext(DragAndDropContext);
+
+    const displayPicture = () => {
+        if (file) {
+            console.log(file.type)
+            return <Picture file={file.type} />
+        }
+
+        return <></>
+    }
 
     const handleQuestion = (e) => {
         e.preventDefault()
@@ -33,6 +48,7 @@ const QuestionBox = ({ addMessage }) => {
     return (
         <form onSubmit={handleSubmit} onKeyDown={handleKey} id="question-box">
            <textarea id="question" placeholder="Message DocumentAI"  onChange={(e) => handleQuestion(e)} />
+           {displayPicture()}
            {/* <input type="submit" className="submitButton" /> */}
         </form>
     )
