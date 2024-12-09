@@ -7,14 +7,14 @@ import { DragAndDropContext } from "./DragAndDropContext";
 import Picture from "./Picture";
 
 import QueryModel from "../utils/queryModel.js";
+import { retrieveDocuments, ingestDocument } from "../services/genkit";
 
 const QuestionBox = ({ addMessage }) => {
     const [question, setQuestion] = useState("");
-    const { file } = useContext(DragAndDropContext);
+    let { file } = useContext(DragAndDropContext);
 
     const displayPicture = () => {
         if (file) {
-            console.log(file.type)
             return <Picture file={file.type} />
         }
 
@@ -31,11 +31,20 @@ const QuestionBox = ({ addMessage }) => {
 
         let time = new Date();
         let questionTime = time.getTime();
-        addMessage(questionTime, question)
+        addMessage(questionTime, question, "User")
 
         let responseTime = time.getTime() + 1;
-        addMessage(responseTime, "")
-        QueryModel(responseTime, question, addMessage)
+        addMessage(responseTime, "", null)
+
+        if (file) {
+            console.log("started upload")
+            await ingestDocument(file)
+        }
+
+        retrieveDocuments(question).then(async (e)=>{
+            await QueryModel(responseTime, question, addMessage, e ? e : "")
+            file = ""
+        })
     }
 
     const handleKey = (e) => {
@@ -47,7 +56,7 @@ const QuestionBox = ({ addMessage }) => {
 
     return (
         <form onSubmit={handleSubmit} onKeyDown={handleKey} id="question-box">
-           <textarea id="question" placeholder="Message DocumentAI"  onChange={(e) => handleQuestion(e)} />
+           <textarea id="question" placeholder="Message DocumentAI" onChange={(e) => handleQuestion(e)} />
            {displayPicture()}
            {/* <input type="submit" className="submitButton" /> */}
         </form>

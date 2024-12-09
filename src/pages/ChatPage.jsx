@@ -23,7 +23,7 @@ const ChatPage = () => {
             <Chat>
                 {Object.values(messages).map(message => (
                     <div key={uuidv1()}>
-                        <Message message={message} />
+                        <Message message={message[0]} author={message[1] ? message[1] : "DocumentAI"} />
                     </div>
                 ))}
             </Chat>

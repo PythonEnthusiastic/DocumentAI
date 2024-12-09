@@ -3,7 +3,7 @@ import MinimizeIcon from "../assets/MinimizeIcon.jsx";
 import DownRightArrow from "../assets/DownRightArrow.jsx";
 import "../styles/message.css"
 
-const Message = ({ author="DocumentAI", message="" }) => {
+const Message = ({ author="", message="" }) => {
     const messageStyle = {
         backgroundColor: "#7e75c1",
         width: "clamp(50%, 65vw, 100%)",

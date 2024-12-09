@@ -1,13 +1,13 @@
-const QueryModel = async (pId, userString, addMessage) => {
+const QueryModel = async (pId, userString, addMessage, doc) => {
     if (userString == "") {
         return 
     }
 
     const payload = {
-        input: userString,
+        input: userString + " Context (Deem if the context after this is necessary to answer the question, if yes then answer it with the context, if not then ignore the context entirely):" + doc  
     }
 
-    const response = await fetch("http://localhost:5001/documentai-440916/us-central1/queryOllamaModel", {
+    const response = await fetch("Add ye own", {
         method: "POST",
         header: {
             "Content-type": "application/json"
